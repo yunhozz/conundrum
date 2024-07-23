@@ -23,10 +23,8 @@ public class 카펫 {
             int num = 2 * (a + b) + 4;
 
             if (num <= brown) {
-                if ((brown - num) % 8 == 0) {
-                    int r = (brown - num) / 8;
-                    return new int[] {a + r * 2 + 2, b + r * 2 + 2};
-                }
+                int r = (brown - num) / 8;
+                return new int[] {a + r * 2 + 2, b + r * 2 + 2};
             }
         }
 
