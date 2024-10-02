@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class 토마토 {
+public class _7576 {
 
     private static int[][] board;
     private static boolean[][] check;
