@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class 빙산 {
+public class _2573 {
 
     private static int[][] board;
     private static int n, m;
