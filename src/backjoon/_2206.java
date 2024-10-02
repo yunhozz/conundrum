@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class 벽부수고이동하기 {
+public class _2206 {
 
     private static int[][] board;
     private static boolean[][][] checked;
