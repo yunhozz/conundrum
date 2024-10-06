@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Main {
+public class _2239 {
 
     static int[][] board;
     static final List<int[]> coordinates = new ArrayList<>();
