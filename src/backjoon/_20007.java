@@ -12,7 +12,7 @@ import java.util.StringTokenizer;
 public class _20007 {
 
     static int N, M, X, Y, INF = Integer.MAX_VALUE;
-    static final List<List<Point>> points = new ArrayList<>();
+    static final List<List<Point>> pointTree = new ArrayList<>();
 
     static class Point implements Comparable<Point> {
         int num, length;
@@ -38,7 +38,7 @@ public class _20007 {
         Y = Integer.parseInt(st.nextToken());
 
         for (int i = 0; i < N; i++) {
-            points.add(new ArrayList<>());
+            pointTree.add(new ArrayList<>());
         }
 
         for (int i = 0; i < M; i++) {
@@ -47,20 +47,20 @@ public class _20007 {
             int h2 = Integer.parseInt(st.nextToken());
             int l = Integer.parseInt(st.nextToken());
 
-            points.get(h1).add(new Point(h2, l));
-            points.get(h2).add(new Point(h1, l));
+            pointTree.get(h1).add(new Point(h2, l));
+            pointTree.get(h2).add(new Point(h1, l));
         }
 
-        int[] length = dijkstra(Y);
+        int[] dp = dijkstra(Y);
         Queue<Point> pq = new PriorityQueue<>();
 
         for (int i = 0; i < N; i++) {
             if (i == Y) continue;
-            if (length[i] == INF) {
+            if (dp[i] == INF) {
                 System.out.println(-1);
                 System.exit(0);
             }
-            pq.offer(new Point(i, length[i]));
+            pq.offer(new Point(i, dp[i]));
         }
 
         int sum = 0;
@@ -93,29 +93,29 @@ public class _20007 {
     static int[] dijkstra(int start) {
         Queue<Point> pq = new PriorityQueue<>();
         boolean[] visited = new boolean[N];
-        int[] length = new int[N];
+        int[] dp = new int[N];
 
-        Arrays.fill(length, INF);
+        Arrays.fill(dp, INF);
         pq.offer(new Point(start, 0));
-        length[start] = 0;
+        dp[start] = 0;
 
         while (!pq.isEmpty()) {
             Point point = pq.poll();
 
-            if (length[point.num] < point.length) continue;
+            if (dp[point.num] < point.length) continue;
             if (visited[point.num]) continue;
 
             visited[point.num] = true;
-            List<Point> pointList = points.get(point.num);
+            List<Point> points = pointTree.get(point.num);
 
-            for (Point p : pointList) {
-                if (length[p.num] > length[point.num] + p.length) {
-                    length[p.num] = length[point.num] + p.length;
-                    pq.offer(new Point(p.num, length[p.num]));
+            for (Point p : points) {
+                if (dp[p.num] > dp[point.num] + p.length) {
+                    dp[p.num] = dp[point.num] + p.length;
+                    pq.offer(new Point(p.num, dp[p.num]));
                 }
             }
         }
 
-        return length;
+        return dp;
     }
 }
